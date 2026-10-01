@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import { Logo } from "@/components/layout/logo";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { buttonVariants } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -105,6 +106,7 @@ export function Navbar() {
             <Menu className="size-6" aria-hidden="true" />
           </button>
         </div>
+        <ScrollProgress />
       </header>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} pathname={pathname} />
