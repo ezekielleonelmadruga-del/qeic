@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/home/qeic-hero-background.jpg",
-        width: 1120,
-        height: 745,
-        alt: "Smith School of Business at Queen's University",
+        url: "/images/home/qeic-hero-event.jpg",
+        width: 1500,
+        height: 1125,
+        alt: "Students listening to a keynote speaker at a QEIC event",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: defaultTitle,
     description: SITE_DESCRIPTION,
-    images: ["/images/home/qeic-hero-background.jpg"],
+    images: ["/images/home/qeic-hero-event.jpg"],
   },
 };
 

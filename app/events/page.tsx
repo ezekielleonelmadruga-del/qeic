@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
+import { LinkedInIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/reveal";
 import { PageHeader } from "@/components/page-header";
 import { SafeImage } from "@/components/safe-image";
-import { EVENTS, PREVIOUS_SPEAKERS } from "@/lib/data/events";
+import { EVENTS, PREVIOUS_SPEAKERS, type Speaker } from "@/lib/data/events";
 import { initialsFrom } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -89,35 +90,58 @@ export default function EventsPage() {
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4 lg:gap-8">
             {PREVIOUS_SPEAKERS.map((speaker, i) => (
               <Reveal key={speaker.id} delay={(i % 4) * 0.06}>
-                <article className="group relative">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-muted">
-                    <SafeImage
-                      src={speaker.image}
-                      alt={`${speaker.name}, past QEIC speaker`}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      initials={initialsFrom(speaker.name)}
-                      className="object-cover grayscale transition-all duration-500 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
-                    />
-                  </div>
-                  <span
-                    className="mt-4 block h-px w-full origin-left scale-x-0 bg-qeic-500 transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    aria-hidden="true"
-                  />
-                  <div className="mt-4">
-                    <h3 className="font-display text-lg font-bold tracking-tight text-foreground">
-                      {speaker.name}
-                    </h3>
-                    <p className="mt-2 font-mono text-xs tracking-wide text-qeic-500">
-                      {speaker.event}
-                    </p>
-                  </div>
-                </article>
+                <SpeakerCard speaker={speaker} />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+function SpeakerCard({ speaker }: { speaker: Speaker }) {
+  const content = (
+    <>
+      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-muted">
+        <SafeImage
+          src={speaker.image}
+          alt={`${speaker.name}, past QEIC speaker`}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          initials={initialsFrom(speaker.name)}
+          className="object-cover grayscale transition-all duration-500 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+        />
+      </div>
+      <span
+        className="mt-4 block h-px w-full origin-left scale-x-0 bg-qeic-500 transition-transform duration-300 ease-out group-hover:scale-x-100"
+        aria-hidden="true"
+      />
+      <div className="mt-4">
+        <h3 className="inline-flex items-center gap-1.5 font-display text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-qeic-600 dark:group-hover:text-qeic-300">
+          {speaker.name}
+          {speaker.linkedin ? (
+            <LinkedInIcon className="size-3.5 shrink-0 text-muted-foreground transition-colors group-hover:text-qeic-500" />
+          ) : null}
+        </h3>
+        <p className="mt-1 text-sm leading-snug text-muted-foreground">{speaker.title}</p>
+        <p className="mt-2 font-mono text-xs tracking-wide text-qeic-500">{speaker.event}</p>
+      </div>
+    </>
+  );
+
+  // The whole card (headshot + name) links to the speaker's LinkedIn.
+  return speaker.linkedin ? (
+    <a
+      href={speaker.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${speaker.name} on LinkedIn`}
+      className="group relative block rounded-md focus-visible:ring-2 focus-visible:ring-qeic-400 focus-visible:ring-offset-4 focus-visible:ring-offset-background focus-visible:outline-none"
+    >
+      <article>{content}</article>
+    </a>
+  ) : (
+    <article className="group relative">{content}</article>
   );
 }

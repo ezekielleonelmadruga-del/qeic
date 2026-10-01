@@ -103,7 +103,7 @@ export const PORTFOLIOS: Portfolio[] = [
     blurb: "Handling the operations behind every event.",
     members: [
       { id: "elizabeth-amato", name: "Elizabeth Amato", role: "Director", image: "/team/elizabethamato.jpg" },
-      { id: "annie-nichols", name: "Annie Nichols", role: "Coordinator", image: "" },
+      { id: "annie-nichols", name: "Annie Nichols", role: "Coordinator", image: "/team/annienichols.jpg" },
     ],
   },
 ];

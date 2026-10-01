@@ -38,8 +38,8 @@ export default function HomePage() {
         className="relative flex min-h-screen items-center justify-center overflow-hidden bg-charcoal"
       >
         <Image
-          src="/images/home/qeic-hero-background.jpg"
-          alt="Smith School of Business at Queen's University"
+          src="/images/home/qeic-hero-event.jpg"
+          alt="Students listening to a keynote speaker at a QEIC event"
           fill
           priority
           sizes="100vw"
