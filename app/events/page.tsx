@@ -55,9 +55,16 @@ export default function EventsPage() {
                         {event.description}
                       </p>
                     </div>
-                    <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase md:pt-3">
-                      {event.status}
-                    </span>
+                    <div className="md:pt-3 md:text-right">
+                      {event.date ? (
+                        <p className="font-display text-lg font-bold tracking-tight text-foreground">
+                          {event.date}
+                        </p>
+                      ) : null}
+                      <p className="mt-1 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                        {event.status}
+                      </p>
+                    </div>
                   </div>
                 </article>
               </Reveal>
